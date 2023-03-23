@@ -10,6 +10,7 @@ after_df = pd.read_csv(after_file)
 
 # Merge the dataframes using the index
 merged_df = pd.merge(before_df, after_df, left_index=True, right_index=True)
+merged_df = before_df.merge(after_df, on='ID', how='outer', suffixes=('_before', '_after'))
 
 # Create a new column to indicate whether each row is an addition or deletion
 merged_df['change'] = 'unchanged'
